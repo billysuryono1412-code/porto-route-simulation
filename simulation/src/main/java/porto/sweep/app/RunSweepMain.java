@@ -811,7 +811,7 @@ public class RunSweepMain {
                 return Path.of(arg.substring("--config=".length()));
             }
         }
-        return Path.of("examples/sweep.properties");
+        return Path.of("examples/quickstart.properties");
     }
 
     private static final class SweepDesignOptions {
