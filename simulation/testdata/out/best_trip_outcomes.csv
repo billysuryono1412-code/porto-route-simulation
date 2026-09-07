@@ -1,0 +1,7 @@
+sim_trip_id,taxi_id,completed_trip_no,od_id,initial_route_id,final_route_id,reroute_count,expected_time_sec,actual_time_sec,realized_edge_seq,realized_node_seq,best_jaccard,matched_real_route_id
+"sim_taxi_1_trip_1",1,1,"od2","r3","r3",0,90.0,90.00135,"e5|e6","D|E|F",1.0,"real3"
+"sim_taxi_0_trip_1",0,1,"od1","r1","r1",0,100.0,100.00009375,"e1|e2","A|B|D",1.0,"real1"
+"sim_taxi_1_trip_2",1,2,"od1","r1","r1",0,100.00004687500001,100.00009375000002,"e1|e2","A|B|D",1.0,"real1"
+"sim_taxi_0_trip_2",0,2,"od1","r1","r1",0,100.00006562499999,100.00151874999999,"e1|e2","A|B|D",1.0,"real1"
+"sim_taxi_1_trip_3",1,3,"od1","r1","r1",0,100.00006562500002,100.0001125,"e1|e2","A|B|D",1.0,"real1"
+"sim_taxi_0_trip_3",0,3,"od1","r1","r1",0,100.000365625,100.00181875000001,"e1|e2","A|B|D",1.0,"real1"
