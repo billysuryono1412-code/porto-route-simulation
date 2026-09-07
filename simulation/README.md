@@ -18,7 +18,7 @@ Each simulation runs independently. The runner executes parameter configurations
 - Maven if using the Maven commands. The project declares no external application dependencies; Maven may need to download build plugins.
 - The CSV files referenced by your configuration.
 
-Run commands from the repository root. Relative paths in properties files resolve against the working directory, **not the configuration file's directory**. Use forward slashes for Windows paths inside `.properties` files.
+Run commands from the simulation/. Relative paths in properties files resolve against the working directory, **not the configuration file's directory**. Use forward slashes for Windows paths inside `.properties` files.
 
 ### Maven
 
@@ -31,7 +31,7 @@ mvn -q compile
 Compile and run the existing Porto configuration:
 
 ```powershell
-mvn -q compile exec:java "-Dexec.args=--config=examples/sweep.properties"
+mvn -q compile exec:java "-Dexec.args=--config=examples/quickstart.properties"
 ```
 
 Review dataset paths, fleet size, sweep size, and output location before running. Omitting `--config` selects `examples/sweep.properties`.
@@ -50,26 +50,48 @@ java -cp out porto.sweep.app.RunSweepMain --config=examples/sweep.properties
 Save this as `examples/quickstart.properties`, then run either command above with `--config=examples/quickstart.properties`. It uses existing Porto inputs with a small fleet and one parameter configuration. This is a setup check, not a calibrated experiment.
 
 ```properties
-candidateRoutes=examples/sim_candidate_routes.csv
-routeWaypoints=examples/sim_route_waypoints.csv
-edgeLookup=examples/sim_edge_lookup.csv
-stableRoutes=examples/stable_od_route_shares_parsed.csv
-rerouteTimeGraphCsv=examples/collapsed_time_graph.csv
-rerouteLengthGraphCsv=examples/collapsed_length_graph.csv
-outputDir=examples/quickstart_runs/run_{timestamp}
+candidateRoutes=examples/candidate_routes.csv
+routeWaypoints=examples/route_waypoints.csv
+edgeLookup=examples/sim_edge_lookup_freeflow.csv
+stableRoutes=examples/od_route_share.csv
+rerouteTimeGraphCsv=examples/time_network.csv
+rerouteLengthGraphCsv=examples/length_network.csv
+backgroundTrafficCsv=examples/background_congestion_flow.csv
 
+outputDir=examples/quickstart_runs/run_{timestamp}
 seed=42
-nTaxis=2
-totalTrips=20
+nTaxis=10
+totalTrips=50
+maxTripsPerOd=2
 nThreads=1
 topKOutputs=1
+
 tripStartMode=immediate
 sweepMode=grid
 routeChoiceMode=behavioral
+normalizeChoiceUtility=true
+
 betaTimeGrid=1.0
 betaMemoryGrid=0.1
+betaEdgeHabitGrid=0.15
+betaDetourGrid=0.15
+betaComplexityGrid=0.05
 decisionNoiseStdGrid=0.0
+
+edgeHabitMode=collective
+edgeHabitScale=10.0
+memoryLearningRate=0.20
+
+lookAheadEdges=4
+rerouteTopK=5
+rerouteMaxRelTime=2.0
+rerouteMaxEdgeJaccard=0.95
+slowdownTriggerRatioGrid=1.02
+slowdownTriggerSecGrid=3.0
+rerouteGainThresholdSecGrid=5.0
+rerouteCooldownSecGrid=120.0
 maxReroutesGrid=1
+
 ```
 
 Unspecified settings use defaults in `SweepConfig`. `{timestamp}` expands to `yyyyMMdd_HHmmss`. Choose a fresh output directory for each experiment because output files can be replaced.
