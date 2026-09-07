@@ -34,7 +34,7 @@ Compile and run the existing Porto configuration:
 mvn -q compile exec:java "-Dexec.args=--config=examples/quickstart.properties"
 ```
 
-Review dataset paths, fleet size, sweep size, and output location before running. Omitting `--config` selects `examples/sweep.properties`.
+Review dataset paths, fleet size, sweep size, and output location before running. Omitting `--config` selects `examples/quickstart.properties`.
 
 ### Java directly in Windows PowerShell
 
@@ -42,7 +42,7 @@ Review dataset paths, fleet size, sweep size, and output location before running
 New-Item -ItemType Directory -Force out | Out-Null
 $javaSources = Get-ChildItem -Recurse -Filter *.java src/main/java
 javac --release 17 -d out $javaSources.FullName
-java -cp out porto.sweep.app.RunSweepMain --config=examples/sweep.properties
+java -cp out porto.sweep.app.RunSweepMain --config=examples/quickstart.properties
 ```
 
 ## Small-run configuration
